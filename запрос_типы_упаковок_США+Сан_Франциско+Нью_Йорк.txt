@@ -1,0 +1,25 @@
+select 
+    toStartOfMonth(date) as month,
+    sum(small_bags) as small_bags,
+    sum(large_bags) as large_bags,
+    sum(xlarge_bags) as xlarge_bags
+from default.avocado
+group by month;
+
+select 
+    toStartOfMonth(date) as month,
+    sum(small_bags) as small_bags,
+    sum(large_bags) as large_bags,
+    sum(xlarge_bags) as xlarge_bags
+from default.avocado
+where region = 'SanFrancisco'
+group by month;
+
+select 
+    toStartOfMonth(date) as month,
+    sum(small_bags) as small_bags,
+    sum(large_bags) as large_bags,
+    sum(xlarge_bags) as xlarge_bags
+from default.avocado
+where region = 'NewYork'
+group by month

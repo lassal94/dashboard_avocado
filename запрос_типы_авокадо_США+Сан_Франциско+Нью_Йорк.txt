@@ -1,0 +1,25 @@
+select 
+    toStartOfMonth(date) as month,
+    sum(plu4046) as plu4046,
+    sum(plu4225) as plu4225,
+    sum(plu4770) as plu4770
+from default.avocado
+group by month;
+
+select 
+    toStartOfMonth(date) as month,
+    sum(plu4046) as plu4046,
+    sum(plu4225) as plu4225,
+    sum(plu4770) as plu4770
+from default.avocado
+where region = 'SanFrancisco'
+group by month;
+
+select 
+    toStartOfMonth(date) as month,
+    sum(plu4046) as plu4046,
+    sum(plu4225) as plu4225,
+    sum(plu4770) as plu4770
+from default.avocado
+where region = 'NewYork'
+group by month

@@ -1,0 +1,37 @@
+select
+  n.month,
+  s.rev as revenue_sf,
+  n.rev as revenue_ny,
+  u.rev as revenue_usa
+from
+  (
+    select
+      toStartOfMonth(date) as month,
+      sum(average_price * total_volume) as rev
+    from
+      default.avocado
+    where
+      region = 'NewYork'
+    group by
+      month
+  ) as n
+  join (
+    select
+      toStartOfMonth(date) as month,
+      sum(average_price * total_volume) as rev
+    from
+      default.avocado
+    where
+      region = 'SanFrancisco'
+    group by
+      month
+  ) as s on n.month = s.month
+  join (
+    select
+      toStartOfMonth(date) as month,
+      sum(average_price * total_volume) as rev
+    from
+      default.avocado
+    group by
+      month
+  ) as u on n.month = u.month
